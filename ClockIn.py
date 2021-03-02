@@ -19,14 +19,13 @@ deviceToken = sys.argv[7]
 sckey = sys.argv[8]
 # ---------------------------------------------------------------------------
 session = requests.Session()
-date = time.strftime('%Y年%m月', time.localtime())
-day = int(time.strftime('%d', time.localtime())) + 1  # 时间慢了一点，加一下
-date = date + str(day)
+now = time.time()+28800
+date = time.strftime("%m月%d日",time.localtime(now))
 
 
 # Wxpush()消息推送模块
 def Wxpush(msg):
-    url = f'https://sc.ftqq.com/{sckey}.send?text={date}日{msg}'
+    url = f'https://sc.ftqq.com/{sckey}.send?text={date}{msg}'
     for _ in range(3):
         err = requests.get(url)
         if not err.json()['errno']:
@@ -59,9 +58,10 @@ def login():
 
     response = session.post(url=url, headers=header, data=data)
     if response.json()['status'] == 1:
-        print('login_success!')
+        print('登录成功')
         flag = 1
     else:
+        print(response.json()['msg'])
         msg = parse.quote_plus(response.json()['msg'])
         Wxpush(msg)
         flag = 0
@@ -95,9 +95,11 @@ def sign_in(token):
     response = session.post(url=url, headers=header, data=data)
     if response.json()['status'] == 1:
         msg = '打卡成功'
+        print(msg)
         Wxpush(msg)
     else:
         msg = parse.quote_plus(response.json()['msg'])
+        print(msg)
         Wxpush(msg)
 
 
@@ -145,9 +147,9 @@ def sign_in_evening(token):
     data = json.dumps(data)
     response = session.post(url=url, headers=header, data=data)
     if response.json()['status'] == 1:
-        print("success!")
+        print("签到成功")
     else:
-        print("fail!")
+        print("签到失败")
     msg = parse.quote_plus(response.json()['msg'])
     Wxpush(msg)
 

@@ -21,7 +21,7 @@
 | DISTRICT    | 地区:如河南省-郑州市-金水区|
 | DEVICETOKEN | 你抓包得到的devicetoken|
 | SCKEY       | sever酱key|
-- 4.DEVICETOKEN获取方法。
+- 4.DEVICETOKEN获取方法。[AndroidHttpCapture安卓抓包软件下载](http://static.hk.darkal.cn/har/demo.apk)
 [操作视频](https://mp.weixin.qq.com/s/9ww2373nxj3JyV4o1VAvAw)
 
 - 5.sever酱使用参见[官网](http://sc.ftqq.com/3.version)。
@@ -42,4 +42,4 @@ Github Actions 默认处于关闭状态，大家请手动开启 Actions ，执�
 - 8.经纬度可以进入[高德地图API](https://developer.amap.com/api/webservice/guide/api/georegeo#geo)下翻至服务示例，输入你的定位地点后于返回的数据中获取
 [点我看图](https://s3.ax1x.com/2021/01/28/y9Ml5Q.png)
 
-### Q群：[点击链接加入群聊](https://jq.qq.com/?_wv=1027&k=oCdISxo1)
+### Q群：有问题可以进群问[点击链接加入群聊](https://jq.qq.com/?_wv=1027&k=oCdISxo1)
