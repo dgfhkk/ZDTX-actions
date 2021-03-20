@@ -21,11 +21,11 @@
 | DISTRICT    | 地区:如河南省-郑州市-金水区|
 | DEVICETOKEN | 你抓包得到的devicetoken|
 | SCKEY       | sever酱key|
-- 4. Devicetoken获取方法
+- 4.Devicetoken获取方法
 下载安装[小黄鸟](https://wwi.lanzous.com/iJiYSn5cc5c)
 抓取devicetoken
 ![](https://ae01.alicdn.com/kf/Uaf84ccdb77434a7c922ae1a5320866deG.jpg)
-**注：**手机更新系统、恢复出厂设置、指点天下重新安装或者换手机都需要重新获取devicetoken。
+**注：** 手机更新系统、恢复出厂设置、指点天下重新安装或者换手机都需要重新获取devicetoken。
 - 5.sever酱使用参见[官网](http://sc.ftqq.com/3.version)。
 
 - 6.开启 Actions 并触发每日自动执行
