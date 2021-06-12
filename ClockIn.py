@@ -68,6 +68,7 @@ def login():
         print(response.json()['msg'])
         msg = parse.quote_plus(response.json()['msg'])
         Wxpush(msg)
+        CoolPush(msg)
         flag = 0
     return response.json()['data']
 
@@ -158,7 +159,6 @@ def sign_in_evening(token):
         print("签到失败")
     msg = parse.quote_plus(response.json()['msg'])
     Wxpush(msg)
-    CoolPush(msg)
 
 
 if __name__ == "__main__":
