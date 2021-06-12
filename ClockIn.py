@@ -68,8 +68,6 @@ def login():
         print(response.json()['msg'])
         msg = parse.quote_plus(response.json()['msg'])
         Wxpush(msg)
-        CoolPush(msg)
-        
         flag = 0
     return response.json()['data']
 
@@ -103,7 +101,7 @@ def sign_in(token):
         msg = '打卡成功'
         print(msg)
         Wxpush(msg)
-        CoolPush(msg)
+        CoolPush('1')
     else:
         msg = parse.quote_plus(response.json()['msg'])
         print(msg)
