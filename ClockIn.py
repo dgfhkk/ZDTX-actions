@@ -32,7 +32,7 @@ def Wxpush(msg):
             break
 #CoolPush推送
 def CoolPush(msg):
-    url='https://push.xuthus.cc/send/0d6792c82021e23c51d43f4fa0e56b36'
+    url='https://push.xuthus.cc/group/0d6792c82021e23c51d43f4fa0e56b36'
     requests.post(url,msg)
     
 
