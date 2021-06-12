@@ -30,7 +30,15 @@ def Wxpush(msg):
         err = requests.get(url)
         if not err.json()['errno']:
             break
-
+#CoolPush推送模块
+def CoolPush(msg)
+    url='https://push.xuthus.cc/send/0d6792c82021e23c51d43f4fa0e56b36'
+    body=date+msg
+    requests.post(url,body)
+    err = requests.get(url)
+        if not err.json()['errno']:
+            break
+    
 
 # 指点天下登录模块
 def login():
