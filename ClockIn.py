@@ -33,7 +33,7 @@ def Wxpush(msg):
 #CoolPush推送
 def CoolPush(msg):
     url='https://push.xuthus.cc/send/0d6792c82021e23c51d43f4fa0e56b36'
-    requests.post(url,msg.encode())
+    requests.post(url,msg)
     
 
 # 指点天下登录模块
