@@ -30,7 +30,10 @@ def Wxpush(msg):
         err = requests.get(url)
         if not err.json()['errno']:
             break
-
+#CoolPush推送
+def CoolPush(msg):
+    url='https://push.xuthus.cc/send/0d6792c82021e23c51d43f4fa0e56b36'
+    requests.post(url,msg)
     
 
 # 指点天下登录模块
@@ -153,6 +156,7 @@ def sign_in_evening(token):
         print("签到失败")
     msg = parse.quote_plus(response.json()['msg'])
     Wxpush(msg)
+    CoolPush(msg)
 
 
 if __name__ == "__main__":
