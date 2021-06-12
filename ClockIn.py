@@ -33,7 +33,7 @@ def Wxpush(msg):
 #CoolPush推送
 def CoolPush(msg):
     url='https://push.xuthus.cc/send/0d6792c82021e23c51d43f4fa0e56b36'
-    requests.post(url,msg)
+    requests.post(url,msg.encode())
     
 
 # 指点天下登录模块
@@ -68,6 +68,8 @@ def login():
         print(response.json()['msg'])
         msg = parse.quote_plus(response.json()['msg'])
         Wxpush(msg)
+        CoolPush(msg)
+        
         flag = 0
     return response.json()['data']
 
@@ -101,10 +103,12 @@ def sign_in(token):
         msg = '打卡成功'
         print(msg)
         Wxpush(msg)
+        CoolPush(msg)
     else:
         msg = parse.quote_plus(response.json()['msg'])
         print(msg)
         Wxpush(msg)
+        CoolPush(msg)
 
 
 # 获取每日宿舍签到的signInId模块
