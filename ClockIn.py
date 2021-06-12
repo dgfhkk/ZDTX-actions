@@ -102,7 +102,8 @@ def sign_in(token):
         msg = '打卡成功'
         print(msg)
         Wxpush(msg)
-        CoolPush('1')
+        message='1'
+        CoolPush(message)
     else:
         msg = parse.quote_plus(response.json()['msg'])
         print(msg)
