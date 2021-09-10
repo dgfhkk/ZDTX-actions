@@ -17,6 +17,7 @@ lng = sys.argv[5]
 district = sys.argv[6]
 deviceToken = sys.argv[7]
 sckey = sys.argv[8]
+jishikey=sys.argv[9]
 # ---------------------------------------------------------------------------
 session = requests.Session()
 now = time.time()+28800
@@ -30,10 +31,14 @@ def Wxpush(msg):
         err = requests.get(url)
         if not err.json()['errno']:
             break
-#CoolPush推送
-def CoolPush(msg):
-    url='https://push.xuthus.cc/group/0d6792c82021e23c51d43f4fa0e56b36'
-    requests.post(url,msg)
+#即时达推送
+def JiSHiPush(msg):
+    url=f'http://push.ijingniu.cn/send?key={jishikey}&head={date}{msg}&body={msg}'
+    for _ in range(3):
+        err = requests.post(url)
+        if not err.json()['errno']:
+            break
+
     
 
 # 指点天下登录模块
@@ -68,7 +73,7 @@ def login():
         print(response.json()['msg'])
         msg = parse.quote_plus(response.json()['msg'])
         Wxpush(msg)
-        CoolPush(msg)
+        JiSHiPush(msg)
         flag = 0
     return response.json()['data']
 
@@ -102,13 +107,14 @@ def sign_in(token):
         msg = '打卡成功'
         print(msg)
         Wxpush(msg)
+        JiSHiPush(msg)
         message='1'
-        CoolPush(message)
+     
     else:
         msg = parse.quote_plus(response.json()['msg'])
         print(msg)
         Wxpush(msg)
-        CoolPush(msg)
+        JiSHiPush(msg)
 
 
 # 获取每日宿舍签到的signInId模块
@@ -159,7 +165,7 @@ def sign_in_evening(token):
     else:
         print("签到失败")
     msg = parse.quote_plus(response.json()['msg'])
-    Wxpush(msg)
+    JiSHiPush(msg)
 
 
 if __name__ == "__main__":
