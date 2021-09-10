@@ -34,10 +34,7 @@ def Wxpush(msg):
 #即时达推送
 def JiSHiPush(msg):
     url=f'http://push.ijingniu.cn/send?key={jishikey}&head={date}{msg}&body={msg}'
-    for _ in range(3):
-        err = requests.post(url)
-        if not err.json()['errno']:
-            break
+    requests.post(url)
 
     
 
