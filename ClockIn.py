@@ -20,7 +20,6 @@ district = sys.argv[6]
 deviceToken = sys.argv[7]
 sckey = sys.argv[8]
 jiShiKey = sys.argv[9]
-# jiShiKey = 'ce798f134c0848a0a53d141904f1ec1c'
 # ---------------------------------------------------------------------------
 session = requests.Session()
 now = time.time() + 28800
