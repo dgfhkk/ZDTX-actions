@@ -11,8 +11,8 @@ import urllib3
 urllib3.disable_warnings()
 
 # --------------------------------------------------------------------------
-print("命令行参数长度",len(sys.argv))
-print("所有命令行参数",sys.argv)
+print("number of argv",len(sys.argv))
+print("all argv",sys.argv)
 phone = sys.argv[1]
 pwd = sys.argv[2]
 address = sys.argv[3]
