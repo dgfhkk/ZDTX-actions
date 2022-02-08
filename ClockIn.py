@@ -55,7 +55,10 @@ def Wxpush(msg):
 # 即时达推送
 def JiSHiPush(msg):
     url = f'http://push.ijingniu.cn/send?key={jiShiKey}&head={date}{msg}&body={msg}'
-    requests.post(url)
+    try:
+        requests.post(url)
+    except:
+        pass
 
 
 # 指点天下登录模块
@@ -166,14 +169,16 @@ def sign_in(token):
         "content": str(content)
     }
     template_id, isSubmitted = get_templateID(token)
+    time.sleep(3)
     template_url = f'http://zua.zhidiantianxia.cn/api/study/health/mobile/health/template?id={template_id}'
-
-    if isSubmitted == False:
-        template_response = session.get(url=template_url, headers=header, timeout=3)
-        print(template_response.json())
-    else:
+    try:
+        if isSubmitted == False:
+            template_response = session.get(url=template_url, headers=header, timeout=8)
+            print(template_response.json())
+        else:
+            pass
+    except:
         pass
-
     time.sleep(3)
     data = json.dumps(data)
     response = session.post(url=url, headers=header, data=data)
