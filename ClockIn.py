@@ -1,3 +1,4 @@
+# encoding=utf-8
 import json
 import random
 import sys
@@ -11,8 +12,6 @@ import urllib3
 urllib3.disable_warnings()
 
 # --------------------------------------------------------------------------
-print("number of argv",len(sys.argv))
-print("all argv",sys.argv)
 phone = sys.argv[1]
 pwd = sys.argv[2]
 address = sys.argv[3]
@@ -25,11 +24,13 @@ jiShiKey = sys.argv[9]
 # ---------------------------------------------------------------------------
 session = requests.Session()
 now = time.time() + 28800
-date = time.strftime("%m年%d日", time.localtime(now))
+date = time.strftime("%m{month}%d{day}", time.localtime(now)).format(month='月', day='日')
 
-
+print('argv[9]:',sys.argv[9])
+print("fuck")
 # Push
 def Push(msg):
+    print("推送消息:", parse.unquote(msg), end='\n')
     try:
         Wxpush(msg)
     except:
@@ -96,7 +97,7 @@ def login():
 
 # 获取打卡信息模板ID
 def get_templateID(token):
-    print("尝试获取模板...")
+    print("尝试获取模板ID...")
     url = 'http://zua.zhidiantianxia.cn/api/study/health/mobile/health/permission'
     header = {
         'axy-phone': phone,
@@ -118,6 +119,11 @@ def get_templateID(token):
             return -1
 
 
+# 随机温度
+def random_temperature():
+    return str(round(random.uniform(36.2, 36.8), 1))
+
+
 # 每日健康打卡模块
 def sign_in(token):
     url = 'http://zua.zhidiantianxia.cn/api/study/health/apply'
@@ -131,10 +137,6 @@ def sign_in(token):
         'Accept-Encoding': 'gzip',
         'Content-Length': '695'
     }
-
-    # 随机温度
-    def random_temperature():
-        return str(round(random.uniform(36.2, 36.8), 1))
 
     content = {
         "location": {"address": address, "code": "1", "lng": lng, "lat": lat},
@@ -166,14 +168,17 @@ def sign_in(token):
         "content": str(content)
     }
     template_id, isSubmitted = get_templateID(token)
+    time.sleep(3)
+    print(template_id, isSubmitted)
     template_url = f'http://zua.zhidiantianxia.cn/api/study/health/mobile/health/template?id={template_id}'
-
-    if isSubmitted == False:
-        template_response = session.get(url=template_url, headers=header, timeout=3)
-        print(template_response.json())
-    else:
+    try:
+        if isSubmitted == False:
+            template_response = session.get(url=template_url, headers=header, timeout=4)
+            print(template_response.json())
+        else:
+            pass
+    except:
         pass
-
     time.sleep(3)
     data = json.dumps(data)
     response = session.post(url=url, headers=header, data=data)
