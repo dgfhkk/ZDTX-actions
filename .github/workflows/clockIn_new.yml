@@ -20,10 +20,7 @@ jobs:
         run: |
           date
           python -m pip install --upgrade pip
-          pip install requests pylint
-      - name: Analysing the code with pylint
-        run: |
-          pylint $(git ls-files '*.py')
+          pip install requests
       - name: Run pyshell
         run: python ClockIn.py ${{secrets.PHONE}} ${{secrets.PASSWORD}} ${{secrets.ADDRESS}} ${{secrets.LAT}} ${{secrets.LNG}} ${{secrets.DISTRICT}} ${{secrets.DEVICETOKEN}} ${{secrets.SCKEY}} ${{secrets.JISHIKEY}}
       
