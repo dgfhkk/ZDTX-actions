@@ -24,4 +24,5 @@ jobs:
         pylint $(git ls-files '*.py')
     - name: Run pyshell
       run: python ClockIn.py ${{secrets.PHONE}} ${{secrets.PASSWORD}} ${{secrets.ADDRESS}} ${{secrets.LAT}} ${{secrets.LNG}} ${{secrets.DISTRICT}} ${{secrets.DEVICETOKEN}} ${{secrets.SCKEY}} ${{secrets.JISHIKEY}}
+      
 		
