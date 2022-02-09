@@ -1,0 +1,6 @@
+{
+    "health": 0,
+    "student": 1,
+    "templateId": 4,
+    "content": "{\"location\":{\"address\":\"河南省平顶山市汝州市007县道靠近范湾幼儿园\",\"code\":\"1\",\"lng\":112.888428,\"lat\":34.051276},\"temperature\":\"36.5\",\"health\":\"是\",\"observation\":\"否\",\"confirmed\":\"否\",\"haveCOVIDInPlaceOfAbode\":\"否\",\"goToHuiBei\":\"否\",\"contactIllPerson\":\"否\",\"haveYouEverBeenAbroad\":\"否\",\"familyPeopleNum\":\"4\",\"isFamilyHealth\":\"否\",\"isFamilyStatus\":\"否\",\"familyPeopleIsAway\":\"否\",\"hasYourFamilyEverBeenAbroad\":\"否\",\"leave\":\"否\",\"isYesterdayMove\":\"否\",\"admission\":\"是\",\"help\":\"否\",\"nowLocation\":\"河南省-郑州市-金水区\"}"
+}
