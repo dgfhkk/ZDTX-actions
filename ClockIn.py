@@ -28,10 +28,6 @@ session = requests.Session()
 now = time.time() + 28800
 date = time.strftime("%m{month}%d{day}", time.localtime(now)).format(month='月', day='日')
 
-print('argv[9]:', sys.argv[9])
-print("fuck")
-
-
 # Push
 def Push(msg):
     print("推送消息:", parse.unquote(msg))
