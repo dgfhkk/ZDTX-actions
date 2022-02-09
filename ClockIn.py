@@ -100,7 +100,6 @@ def login():
 
 # 获取打卡信息模板ID
 def get_templateID(token):
-    print("尝试获取模板ID...")
     url = 'http://zua.zhidiantianxia.cn/api/study/health/mobile/health/permission'
     header = {
         'axy-phone': phone,
@@ -166,34 +165,39 @@ def sign_in(token):
     data = {
         "health": 0,
         "student": 1,
-        # "templateId": 2,
         "templateId": 4,
         "content": str(content)
     }
     template_id, isSubmitted = get_templateID(token)
-    time.sleep(3)
     print(template_id, isSubmitted)
     time.sleep(3)
     template_url = f'http://zua.zhidiantianxia.cn/api/study/health/mobile/health/template?id={template_id}'
-    try:
-        if isSubmitted == False:
-            template_response = session.get(url=template_url, headers=header, timeout=4)
+    if isSubmitted == False:
+        print("开始打卡")
+        try:
+            template_response = session.get(url=template_url, timeout=4)
             print(template_response.json())
-        else:
-            pass
-    except:
-        pass
+        except:
+            print('获取模板失败')
+    else:
+        print("今日已打卡")
+        
+
 
     time.sleep(3)
-    data = json.dumps(data)
-    response = session.post(url=url, headers=header, data=data)
-    if response.json()['status'] == 1:
-        msg = response.json()['msg'] + f'\n 当前模板ID为{template_id}'  # 打卡成功
-        Push(msg)
+    if isSubmitted == True:
+        data = json.dumps(data)
+        response = session.post(url=url, headers=header, data=data)
+        if response.json()['status'] == 1:
+            msg = response.json()['msg'] + f'\n当前模板ID为{template_id}'  # 打卡成功
+            Push(msg)
 
+        else:
+            msg = parse.quote_plus(response.json()['msg'])
+            Push(msg)
+            print(parse.unquote(msg))
     else:
-        msg = parse.quote_plus(response.json()['msg'])
-        Push(msg)
+        print('今天已经打过卡了~')
 
 
 # 获取每日宿舍签到的signInId模块
