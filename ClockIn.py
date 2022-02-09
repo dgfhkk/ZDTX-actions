@@ -32,15 +32,11 @@ print("fuck")
 
 # Push
 def Push(msg):
-    print("推送消息:", parse.unquote(msg), end='\n')
-    try:
-        Wxpush(msg)
-    except:
-        print("微信推送失败")
-    try:
-        JiSHiPush(msg)
-    except:
-        print("即时达推送失败")
+    print("推送消息:", parse.unquote(msg))
+    Wxpush(msg)
+    time.sleep(1)
+    JiSHiPush(msg)
+
     return
 
 
@@ -255,7 +251,7 @@ if __name__ == "__main__":
     token = login()
     time.sleep(3)
     now_H = int(time.strftime("%H"))
-    if flag==1:
+    if flag == 1:
         if 14 <= now_H <= 15:  # 世界协调时间
             sign_in_evening(token)
         else:
