@@ -23,5 +23,5 @@ jobs:
           pip install requests
       - name: Run pyshell
         run: python ClockIn.py ${{secrets.PHONE}} ${{secrets.PASSWORD}} ${{secrets.ADDRESS}} \
-             ${{secrets.LAT}} ${{secrets.LNG}} ${{secrets.DISTRICT}} ${{secrets.DEVICETOKEN}} ${{secrets.SCKEY}} ${{secrets.JISHIKEY}}
+             ${{secrets.LAT}} ${{secrets.LNG}} ${{secrets.DISTRICT}} ${{secrets.DEVICETOKEN}} ${{secrets.PUSHKEY}}
       

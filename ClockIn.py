@@ -19,8 +19,10 @@ lat = sys.argv[4]
 lng = sys.argv[5]
 district = sys.argv[6]
 deviceToken = sys.argv[7]
-sckey = sys.argv[8]
-jiShiKey = sys.argv[9]
+pushKey = sys.argv[8]
+#推送key
+sckey=pushKey.split("&")[0]
+jiShiKey = pushKey.split('&')[1]
 # ---------------------------------------------------------------------------
 session = requests.Session()
 now = time.time() + 28800
