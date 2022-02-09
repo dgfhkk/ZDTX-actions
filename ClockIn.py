@@ -26,8 +26,10 @@ session = requests.Session()
 now = time.time() + 28800
 date = time.strftime("%m{month}%d{day}", time.localtime(now)).format(month='月', day='日')
 
-print('argv[9]:',sys.argv[9])
+print('argv[9]:', sys.argv[9])
 print("fuck")
+
+
 # Push
 def Push(msg):
     print("推送消息:", parse.unquote(msg), end='\n')
@@ -121,7 +123,7 @@ def get_templateID(token):
             return -1
 
 
-# 随机温度
+# 随机体温
 def random_temperature():
     return str(round(random.uniform(36.2, 36.8), 1))
 
@@ -172,7 +174,7 @@ def sign_in(token):
     print(template_id, isSubmitted)
     time.sleep(3)
     template_url = f'http://zua.zhidiantianxia.cn/api/study/health/mobile/health/template?id={template_id}'
-    if isSubmitted == False:
+    if not isSubmitted:
         print("开始打卡")
         try:
             template_response = session.get(url=template_url, timeout=4)
@@ -181,11 +183,9 @@ def sign_in(token):
             print('获取模板失败')
     else:
         print("今日已打卡")
-        
-
 
     time.sleep(3)
-    if isSubmitted == True:
+    if isSubmitted:
         data = json.dumps(data)
         response = session.post(url=url, headers=header, data=data)
         if response.json()['status'] == 1:
@@ -255,7 +255,7 @@ if __name__ == "__main__":
     token = login()
     time.sleep(3)
     now_H = int(time.strftime("%H"))
-    if flag:
+    if flag==1:
         if 14 <= now_H <= 15:  # 世界协调时间
             sign_in_evening(token)
         else:
