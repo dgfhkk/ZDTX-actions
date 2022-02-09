@@ -3,6 +3,7 @@ name: ClockIn_new
 on:
   schedule:
     - cron: "00 16 * * *"
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
