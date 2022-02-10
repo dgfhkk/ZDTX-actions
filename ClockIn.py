@@ -169,7 +169,6 @@ def sign_in(token):
     time.sleep(3)
     template_url = f'http://zua.zhidiantianxia.cn/api/study/health/mobile/health/template?id={template_id}'
     if not isSubmitted:
-        print("开始打卡")
         try:
             template_response = session.get(url=template_url, timeout=4)
             print(template_response.json())
@@ -179,7 +178,7 @@ def sign_in(token):
         print("今日已打卡")
 
     time.sleep(3)
-    if isSubmitted:
+    if not isSubmitted:
         data = json.dumps(data)
         response = session.post(url=url, headers=header, data=data)
         if response.json()['status'] == 1:
