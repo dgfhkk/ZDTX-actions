@@ -19,10 +19,10 @@ lat = sys.argv[4]
 lng = sys.argv[5]
 district = sys.argv[6]
 deviceToken = sys.argv[7]
-pushKey = sys.argv[8]
+jiShiKey = sys.argv[8]
 #推送key
-sckey=pushKey.split("@")[0]
-jiShiKey = pushKey.split('@')[1]
+＃sckey=pushKey.split("@")[0]
+＃jiShiKey = pushKey.split('@')[1]
 # ---------------------------------------------------------------------------
 session = requests.Session()
 now = time.time() + 28800
@@ -31,7 +31,7 @@ date = time.strftime("%m{month}%d{day}", time.localtime(now)).format(month='月'
 # Push
 def Push(msg):
     print("推送消息:", parse.unquote(msg))
-    Wxpush(msg)
+   ＃ Wxpush(msg)
     time.sleep(1)
     JiSHiPush(msg)
 
