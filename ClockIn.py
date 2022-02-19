@@ -30,9 +30,8 @@ date = time.strftime("%m{month}%d{day}", time.localtime(now)).format(month='月'
 
 # Push
 def Push(msg):
-    print("推送消息:", parse.unquote(msg))
-   ＃ Wxpush(msg)
-    time.sleep(1)
+    print("推送消息:[", parse.unquote(msg),']')
+   #Wxpush(msg)
     JiSHiPush(msg)
 
     return
