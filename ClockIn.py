@@ -21,8 +21,8 @@ district = sys.argv[6]
 deviceToken = sys.argv[7]
 jiShiKey = sys.argv[8]
 #推送key
-＃sckey=pushKey.split("@")[0]
-＃jiShiKey = pushKey.split('@')[1]
+#sckey=pushKey.split("@")[0]
+#jiShiKey = pushKey.split('@')[1]
 # ---------------------------------------------------------------------------
 session = requests.Session()
 now = time.time() + 28800
