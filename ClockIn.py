@@ -73,12 +73,12 @@ def login():
     data = {
         'phone': phone,
         'password': encoded_pwd,
-        'mobileSystem': '10',
+        'mobileSystem': '12',
         'appVersion': '1.7.3',
-        'mobileVersion': 'V1965A',
+        'mobileVersion': 'PDSM00',
         'deviceToken': deviceToken,
         'pushToken': phone,
-        'romInfo': 'vivo',
+        'romInfo': 'OPPO',
     }
 
     response = session.post(url=url, headers=header, data=data)
@@ -99,7 +99,7 @@ def get_templateID(token):
     header = {
         'axy-phone': phone,
         'axy-token': token,
-        'user-agent': 'V1965A(Android/10) (com.axy.zhidian/1.7.3) Weex/0.18.0 1080x2241',
+        'user-agent': 'PDSM00(Android/12) (com.axy.zhidian/1.7.3) Weex/0.18.0 1080x2293',
         'Host': 'zzcsjr.zhidiantianxia.cn',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip',
@@ -128,7 +128,7 @@ def sign_in(token):
         'axy-phone': phone,
         'axy-token': token,
         'Content-Type': 'application/json',
-        'user-agent': 'V1965A(Android/10) (com.axy.zhidian/1.7.3) Weex/0.18.0 1080x2241',
+        'user-agent': 'PDSM00(Android/12) (com.axy.zhidian/1.7.3) Weex/0.18.0 1080x2293',
         'Host': 'zzcsjr.zhidiantianxia.cn',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip',
@@ -198,7 +198,7 @@ def get_signInId(token):
     header = {
         'axy-phone': phone,
         'axy-token': token,
-        'user-agent': 'TAS-AN00(Android/5.1.1) (com.axy.zhidian/1.5.5) Weex/0.18.0 720x1280',
+        'user-agent': 'PDSM00(Android/12) (com.axy.zhidian/1.7.3) Weex/0.18.0 1080x2293',
         'Host': 'zzcsjr.zhidiantianxia.cn',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip'
@@ -221,7 +221,7 @@ def sign_in_evening(token):
         'axy-phone': phone,
         'axy-token': token,
         'Content-Type': 'application/json',
-        'user-agent': 'V1965A(Android/10) (com.axy.zhidian/1.7.2) Weex/0.18.0 1080x2241',
+        'user-agent': 'PDSM00(Android/12) (com.axy.zhidian/1.7.3) Weex/0.18.0 1080x2293',
         'Host': 'zzcsjr.zhidiantianxia.cn',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip',
