@@ -2,7 +2,7 @@ name: ClockIn_new
 
 on:
   schedule:
-    - cron: "00 00 * * *"
+    - cron: "00 18 * * *"
   workflow_dispatch:
 jobs:
   build:
