@@ -100,7 +100,7 @@ def get_templateID(token):
         'axy-phone': phone,
         'axy-token': token,
         'user-agent': 'V1965A(Android/10) (com.axy.zhidian/1.7.3) Weex/0.18.0 1080x2241',
-        'Host': 'zua.zhidiantianxia.cn',
+        'Host': 'zzcsjr.zhidiantianxia.cn',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip',
     }
@@ -129,7 +129,7 @@ def sign_in(token):
         'axy-token': token,
         'Content-Type': 'application/json',
         'user-agent': 'V1965A(Android/10) (com.axy.zhidian/1.7.3) Weex/0.18.0 1080x2241',
-        'Host': 'zua.zhidiantianxia.cn',
+        'Host': 'zzcsjr.zhidiantianxia.cn',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip',
         'Content-Length': '695'
@@ -166,7 +166,7 @@ def sign_in(token):
     template_id, isSubmitted = get_templateID(token)
     print(template_id, isSubmitted)
     time.sleep(3)
-    template_url = f'http://zua.zhidiantianxia.cn/api/study/health/mobile/health/template?id={template_id}'
+    template_url = f'http://zzcsjr.zhidiantianxia.cn/api/study/health/mobile/health/template?id={template_id}'
     if not isSubmitted:
         try:
             template_response = session.get(url=template_url, timeout=4)
@@ -199,7 +199,7 @@ def get_signInId(token):
         'axy-phone': phone,
         'axy-token': token,
         'user-agent': 'TAS-AN00(Android/5.1.1) (com.axy.zhidian/1.5.5) Weex/0.18.0 720x1280',
-        'Host': 'zua.zhidiantianxia.cn',
+        'Host': 'zzcsjr.zhidiantianxia.cn',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip'
     }
@@ -222,7 +222,7 @@ def sign_in_evening(token):
         'axy-token': token,
         'Content-Type': 'application/json',
         'user-agent': 'V1965A(Android/10) (com.axy.zhidian/1.7.2) Weex/0.18.0 1080x2241',
-        'Host': 'zua.zhidiantianxia.cn',
+        'Host': 'zzcsjr.zhidiantianxia.cn',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip',
         'Content-Length': '146'
