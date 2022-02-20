@@ -95,7 +95,7 @@ def login():
 
 # 获取打卡信息模板ID
 def get_templateID(token):
-    url = 'http://zua.zhidiantianxia.cn/api/study/health/mobile/health/permission'
+    url = 'http://zzcsjr.zhidiantianxia.cn/api/study/health/mobile/health/permission'
     header = {
         'axy-phone': phone,
         'axy-token': token,
@@ -123,7 +123,7 @@ def random_temperature():
 
 # 每日健康打卡模块
 def sign_in(token):
-    url = 'http://zua.zhidiantianxia.cn/api/study/health/apply'
+    url = 'http://zzcsjr.zhidiantianxia.cn/api/study/health/apply'
     header = {
         'axy-phone': phone,
         'axy-token': token,
@@ -194,7 +194,7 @@ def sign_in(token):
 
 # 获取每日宿舍签到的signInId模块
 def get_signInId(token):
-    url = 'http://zua.zhidiantianxia.cn/applets/signin/my'
+    url = 'http://zzcsjr.zhidiantianxia.cn/applets/signin/my'
     header = {
         'axy-phone': phone,
         'axy-token': token,
@@ -216,7 +216,7 @@ def get_signInId(token):
 
 # 22点宿舍签到模块
 def sign_in_evening(token):
-    url = 'http://zua.zhidiantianxia.cn/applets/signin/sign'
+    url = 'http://zzcsjr.zhidiantianxia.cn/applets/signin/sign'
     header = {
         'axy-phone': phone,
         'axy-token': token,
