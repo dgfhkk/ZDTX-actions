@@ -117,11 +117,11 @@ def get_templateID(token):
         
 # 获取模板
 def get_template(token, template_id):
-    url = 'http://zua.zhidiantianxia.cn/api/study/health/mobile/health/template?id={}'.format(template_id)
+    url = 'http://zzcsjr.zhidiantianxia.cn/api/study/health/mobile/health/template?id={}'.format(template_id)
     header = {
         'axy-phone': phone,
         'axy-token': token,
-        'user-agent': 'V1965A(Android/10) (com.axy.zhidian/1.7.3) Weex/0.18.0 1080x2241',
+        'user-agent': 'PDSM00(Android/12) (com.axy.zhidian/1.7.3) Weex/0.18.0 1080x2293',
         'Host': 'zua.zhidiantianxia.cn',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip',
