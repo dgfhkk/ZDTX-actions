@@ -20,37 +20,36 @@ lng = sys.argv[5]
 district = sys.argv[6]
 deviceToken = sys.argv[7]
 jiShiKey = sys.argv[8]
-#推送key
-#sckey=pushKey.split("@")[0]
-#jiShiKey = pushKey.split('@')[1]
+# 推送key
+# sckey=pushKey.split("@")[0]
+# jiShiKey = pushKey.split('@')[1]
 # ---------------------------------------------------------------------------
 session = requests.Session()
 now = time.time() + 28800
 date = time.strftime("%m{month}%d{day}", time.localtime(now)).format(month='月', day='日')
 
-# Push
-def Push(msg):
-    print("推送消息:[", parse.unquote(msg),']')
-   #Wxpush(msg)
-    JiSHiPush(msg)
 
-    return
+# Push
+def Push(msg, template=""):
+    print("推送消息:[", parse.unquote(msg), ']')
+    # Wxpush(msg)
+    JiSHiPush(msg, template)
 
 
 # Wxpush()消息推送模块
-def Wxpush(msg):
-    url = f'https://sc.ftqq.com/{sckey}.send?text={date}{msg}'
-    for _ in range(3):
-        err = requests.get(url)
-        print(err.json())
-        if err.json()['data']['error'] == 'SUCCESS':
-            print('消息推送成功')
-            break
+#def Wxpush(msg):
+#    url = f'https://sc.ftqq.com/{sckey}.send?text={date}{msg}'
+#    for _ in range(3):
+#        err = requests.get(url)
+#        print(err.json())
+#        if err.json()['data']['error'] == 'SUCCESS':
+#            print('消息推送成功')
+#            break
 
 
 # 即时达推送
-def JiSHiPush(msg):
-    url = f'http://push.ijingniu.cn/send?key={jiShiKey}&head={date}{msg}&body={msg}'
+def JiSHiPush(msg, template=""):
+    url = f'http://push.ijingniu.cn/send?key={jiShiKey}&head={date}{msg}&body={msg + template}'
     try:
         requests.post(url)
     except:
@@ -115,6 +114,39 @@ def get_templateID(token):
             print("登录错误!")
             return -1
 
+        
+# 获取模板
+def get_template(token, template_id):
+    url = 'http://zua.zhidiantianxia.cn/api/study/health/mobile/health/template?id={}'.format(template_id)
+    header = {
+        'axy-phone': phone,
+        'axy-token': token,
+        'user-agent': 'V1965A(Android/10) (com.axy.zhidian/1.7.3) Weex/0.18.0 1080x2241',
+        'Host': 'zua.zhidiantianxia.cn',
+        'Connection': 'Keep-Alive',
+        'Accept-Encoding': 'gzip',
+    }
+    response = session.get(url=url, headers=header)
+    type(response.json)
+    # print('模板\n', response.json())
+    return response.json()
+
+
+def parse_template(template, templateId):
+    template = template['data']
+    c = 1
+    tttt = "模板ID" + str(templateId) + "\n"
+    for i in template:
+        if type(i) == type({}):
+            if 'optionSelected' in i:
+                for item in i['optionSelected'][0]['fields']:
+                    tttt = tttt + '    ' + '- ' + item['fieldTitle'] + '\n'
+                    # print("-",item['fieldTitle'])
+            tttt = tttt + str(c) + '.' + i['fieldTitle'] + '\n'
+            # print(c,'.',i['fieldTitle'])
+            c = c + 1
+    return tttt
+        
 
 # 随机体温
 def random_temperature():
@@ -166,31 +198,24 @@ def sign_in(token):
     template_id, isSubmitted = get_templateID(token)
     print(template_id, isSubmitted)
     time.sleep(3)
-    template_url = f'http://zzcsjr.zhidiantianxia.cn/api/study/health/mobile/health/template?id={template_id}'
-    if not isSubmitted:
-        try:
-            template_response = session.get(url=template_url, timeout=4)
-            print(template_response.json())
-        except:
-            print('获取模板失败')
+    template = (get_template(token, template_id))
+    tttt = parse_template(template, template_id)
+    time.sleep(2)
+    data = json.dumps(data)
+    response = session.post(url=url, headers=header, data=data)
+    if response.json()['status'] == 1:
+        msg = response.json()['msg'] + f'\n当前模板ID为{template_id}'  # 打卡成功
+        Push(msg, tttt)
+        print(tttt)
     else:
-        print("今日已打卡")
-
-    time.sleep(3)
-    if not isSubmitted:
-        data = json.dumps(data)
-        response = session.post(url=url, headers=header, data=data)
-        if response.json()['status'] == 1:
-            msg = response.json()['msg'] + f'\n当前模板ID为{template_id}'  # 打卡成功
-            Push(msg)
-
-        else:
-            msg = parse.quote_plus(response.json()['msg'])
-            Push(msg)
-            print(parse.unquote(msg))
-    else:
-        print('今天已经打过卡了~')
-
+        msg = parse.quote_plus(response.json()['msg'])
+        Push(msg, tttt)
+        print(tttt)
+        print(parse.unquote(msg))
+        
+        
+        
+        
 
 # 获取每日宿舍签到的signInId模块
 def get_signInId(token):
