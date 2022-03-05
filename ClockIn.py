@@ -135,17 +135,18 @@ def get_template(token, template_id):
 def parse_template(template, templateId):
     template = template['data']
     c = 1
-    tttt = "模板ID" + str(templateId) + "\n"
-    for i in template:
-        if type(i) == type({}):
-            if 'optionSelected' in i:
-                for item in i['optionSelected'][0]['fields']:
-                    tttt = tttt + '    ' + '- ' + item['fieldTitle'] + '\n'
-                    # print("-",item['fieldTitle'])
-            tttt = tttt + str(c) + '.' + i['fieldTitle'] + '\n'
-            # print(c,'.',i['fieldTitle'])
-            c = c + 1
-    return tttt
+    summary = "模板ID" + str(templateId) + "\n"
+    try:
+        for i__ in template:
+            if isinstance(i__,dict):
+                if 'optionSelected' in i__:
+                    for item in i__['optionSelected'][0]['fields']:
+                        summary = summary + '    ' + '- ' + item['fieldTitle'] + '\n'
+                summary = summary + str(c) + '.' + i__['fieldTitle'] + '\n'
+                c = c + 1
+    except:
+        print("解析失败，但不影响打卡！\n")
+    return summary
         
 
 # 随机体温
